@@ -1,10 +1,8 @@
-use serde_json::{Value, Error};
-use tungstenite::Message;
-
-use crate::msg_handler;
-
-pub struct MessagaHandler{}
-
+pub trait MessagaHandler<MsgFrom, MsgTo, ErrorT, ReturnT> {
+    fn handle(&self, msg: MsgFrom) -> Result<ReturnT, ErrorT>;
+    fn reply(&self,msg : &MsgTo)-> Result<ReturnT, ErrorT>;
+}
+/*
 impl MessagaHandler
 {
     pub fn new() -> Self
@@ -21,8 +19,6 @@ impl MessagaHandler
                 Ok(v) => v,
                 Err(_) => panic!("ERROR IN MSG"),
             };
-            let msg = msg_handler::messages::Message::try_from(v).unwrap();
-            println!("{:?}", msg);
             /*
             let topic = Topic::try_from(v["topic"].as_u64().unwrap_or_default() as u8);
             println!("{}",topic.unwrap());
@@ -31,3 +27,4 @@ impl MessagaHandler
             Ok(())
     }
 }
+*/

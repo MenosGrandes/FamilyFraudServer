@@ -1,6 +1,5 @@
 use core::fmt;
 
-
 #[repr(u8)]
 #[derive(Debug, PartialEq)]
 pub enum Topic {
@@ -12,7 +11,9 @@ pub enum Topic {
     Unknown,
 }
 impl Default for Topic {
-    fn default() -> Self { Topic::Unknown }
+    fn default() -> Self {
+        Topic::Unknown
+    }
 }
 impl fmt::Display for Topic {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
@@ -23,11 +24,10 @@ impl fmt::Display for Topic {
             Topic::LifeLost => write!(f, "LifeLost"),
             Topic::SetId => write!(f, "SetId"),
             Topic::Unknown => write!(f, "Unknown"),
-
         }
     }
 }
- impl TryFrom<u8> for Topic {
+impl TryFrom<u8> for Topic {
     type Error = ();
     fn try_from(v: u8) -> Result<Self, Self::Error> {
         match v {
@@ -42,4 +42,3 @@ impl fmt::Display for Topic {
         }
     }
 }
- 
